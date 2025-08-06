@@ -74,6 +74,9 @@
         text-align: center;
         color: #888;
       }
+      .modal-open {
+        overflow: hidden;
+      }
       .modal {
         position: fixed;
         top: 0;
@@ -1860,6 +1863,7 @@
       total.textContent = `Всего книг: ${booksData.length} (из них отсутствует: ${notAvailableCount})`;
 
       function showModal(book) {
+        document.body.classList.add('modal-open');
         modalContent.innerHTML = `
         <img src="images/${book.image ? book.image : 'no-cover.jpg'}" alt="${
           book.title
@@ -1924,7 +1928,10 @@
       searchInput.addEventListener('input', renderBooks);
       availabilityCheckbox.addEventListener('change', renderBooks);
       modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
+        if (e.target === modal) {
+          modal.style.display = 'none';
+          document.body.classList.remove('modal-open');
+        }
       });
 
       renderBooks();
