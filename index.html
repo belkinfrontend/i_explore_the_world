@@ -1878,7 +1878,7 @@
             ? `<p><a href="${book.goodreads}" target="_blank">Ссылка на Goodreads</a></p>`
             : ''
         }
-        <button onclick="document.getElementById('modal').style.display='none'">Закрыть</button>
+        <button onclick="document.getElementById('modal').style.display='none'; document.body.classList.remove('modal-open')">Закрыть</button>
       `;
         modal.style.display = 'flex';
       }
