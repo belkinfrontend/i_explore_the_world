@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Я познаю мир — Каталог книг</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9fafb;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      input[type='text'] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .book-card {
+        display: flex;
+        gap: 16px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .book-image {
+        width: 80px;
+        height: 100px;
+        object-fit: contain;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .book-info {
+        flex-grow: 1;
+      }
+      .book-title {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+      .book-year {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 6px;
+      }
+      .available {
+        color: green;
+      }
+      .not-available {
+        color: red;
+      }
+      .no-results {
+        text-align: center;
+        color: #888;
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 90%;
+        max-height: 90%;
+        overflow-y: auto;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+      .modal img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        display: block;
+        margin: 0 auto 16px;
+      }
+      .modal h2 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .modal button {
+        display: block;
+        margin: 20px auto 0;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background: #333;
+        color: white;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        .book-card {
+          /* flex-direction: column; */
+          align-items: center;
+        }
+        .book-info {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Серия "Я познаю мир"</h1>
+
+      <p id="total"></p>
+
+      <input type="text" id="searchInput" placeholder="Поиск по названию..." />
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="availabilityCheckbox" />
+        <label for="availabilityCheckbox">Только отсутствующие</label>
+      </div>
+
+      <div id="bookList"></div>
+    </div>
+
+    <div id="modal" class="modal" style="display: none">
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <script>
+      const booksData = [
+        {
+          title: '100 исторических событий',
+          image: '100 исторических событий.jpg',
+          description:
+            'Где сражались триста спартанцев? Зачем князьям требовался ярлык? Почему войны бывают «опиумными» «странными» и «холодными»? Что такое «Мюнхенский сговор» и «потёмкинские деревни»? В новом томе универсальной детской энциклопедии «Я познаю мир» вы сможете подробно познакомиться с этими и многими другими историческими событиями, понятиями, явлениями, вошедшими в культурный багаж каждого человека.',
+          availability: false,
+          authors: ['Политов П.А.'],
+          year: 2009,
+          pages: 229,
+          goodreads: null,
+        },
+        {
+          title: '100 мировых шедевров',
+          image: '100 мировых шедевров.jpg',
+          description:
+            'Новая книга многотомной энциклопедии «Я познаю мир» расскажет о выдающихся творениях архитекторов, художников, скульпторов, кинорежиссеров, писателей, композиторов, ювелиров и инженеров всего мира: от Европы, России и Америки до Ближнего и Дальнего Востока. Трогательно и любовно автор описывает нелегкую, хотя временами и курьёзную, судьбу художников и их выдающихся творений. Издание снабжено подробным указателем.',
+          availability: false,
+          year: 2008,
+          pages: 224,
+          authors: ['Политов П.А.'],
+          goodreads: null,
+        },
+        {
+          title: '30 загадок нашего мира',
+          image: '30 загадок нашего мира.jpg',
+          description: null,
+          availability: false,
+          authors: [],
+          year: null,
+          pages: null,
+          goodreads: null,
+        },
+        {
+          title: 'Авиация и воздухоплавание',
+          image: 'Авиация и воздухоплавание.jpg',
+          description:
+            'Перед Вами - иллюстрированная научно-популярная книга об истории, настоящем и будущем авиации и воздухоплавания. Она не только в занимательной форме рассказывает об основных этапах развития аэростатов и дирижаблей, самолетов, планеров, вертолетов и других летательных аппаратов, но и содержит предметно-именной указатель, позволяющий быстро отыскать необходимую информацию.',
+          availability: true,
+          year: 1999,
+          pages: 496,
+          authors: ['Зигуненко С.Н.'],
+          goodreads: null,
+        },
+        {
+          title: 'Автомобили',
+          image: 'Автомобили.jpg',
+          description:
+            'С автомобилем связано много открытий, интересных фактов и громких имен. История автомобиля освещается в книге очень полно: от изобретения колеса до создания говорящей машины. Рассказывается о таких известных автомобильных компаниях, как американские "Форд Мотор", "Крайслер", "Дженерал Моторс", европейские "Пежо", "Опель", "Мерседес", "ФИАТ", "Роллс-Ройс", японские "Тойота", "Мицубиси" и других, а также об отечественных заводах.',
+          availability: false,
+          authors: ['Малов В.И.'],
+          year: 2002,
+          pages: null,
+          goodreads: null,
+        },
+        {
+          title: 'Амфибии',
+          image: 'Амфибии.jpg',
+          description:
+            'Многотомная популярная энциклопедия `Я познаю мир` содержит рассказы по широкому кругу знаний: естественным и гуманитарным наукам, истории, культуре, искусству. Этот том посвящен многообразию удивительного мира амфибий. Что мы в действительности знаем о них? Какие они? Какую роль играют в окружающем нас мире?',
+          availability: false,
+          year: 1999,
+          pages: 480,
+          authors: ['Сергеев Б.Ф.'],
+          goodreads: 'https://www.goodreads.com/book/show/24947224',
+        },
+        {
+          title: 'Анатомия',
+          image: 'Анатомия.jpg',
+          description:
+            'Новый том энциклопедии «Я познаю мир» посвящен анатомии и физиологии человека и животных. Автор подробно и увлекательно рассказывает о строении и работе различных органов и систем, их эволюционной истории, болезнях и методах их лечения. Отдельная глава посвящена непростой истории анатомии как науки. Большое внимание уделяется современным проблемам науки и медицины: клонированию, лечению генетических заболеваний, современным методам исследований. Издание снабжено указателем.',
+          availability: false,
+          year: 2009,
+          pages: 181,
+          authors: ['Алексей Валентинович Пахневич'],
+          goodreads: null,
+        },
+        {
+          title: 'Английский язык',
+          image: 'Английский язык.jpg',
+          description:
+            'Чем отличается американский английский от британского? На каком английском говорят в Африке? Отчего английская орфография такая запутанная? Очередной том энциклопедии знакомит читателя с особенностями английской грамматики и фразеологии, страницами истории Великобритании, фактами об известных писателях, традициях и праздниках Британии и США.',
+          availability: true,
+          year: 2004,
+          pages: 398,
+          authors: ['Ольга Юрьевна Маркова'],
+          goodreads: 'https://www.goodreads.com/book/show/58897655',
+        },
+        {
+          title: 'Арктика и Антарктика',
+          image: 'Арктика и Антарктика.jpg',
+          description:
+            'Очередной том популярной детской энциклопедии «Я познаю мир» посвящен двум самым загадочным и таинственным районам Земли – Арктике и Антарктике. Вы узнаете об особенностях жизни в высоких широтах людей, животных и растений. Книга снабжена предметно–именным указателем, который поможет лучше ориентироваться в представленном материале.',
+          availability: false,
+          year: 2000,
+          pages: 443,
+          authors: ['Бочавер Алексей Львович', 'Прокудин Андрей Андреевич'],
+          goodreads: null,
+        },
+        {
+          title: 'Археология',
+          image: 'Археология.jpg',
+          description:
+            'Очередной том популярной детской энциклопедии "Я познаю мир" посвящен археологии. В книге рассказывается о нелегкой, но увлекательной работе археологов, об удивительных открытиях и знаменитых археологах. Издание снабжено предметно-именным указателем.',
+          availability: false,
+          year: 2003,
+          pages: 398,
+          authors: ['Петроковский А.И.'],
+          goodreads: null,
+        },
+        {
+          title: 'Архитектура',
+          image: 'Архитектура.jpg',
+          description:
+            '"Архитектура" - очередная книга многотомной популярной энциклопедии "Я познаю мир". Книга знакомит читателей с основными понятиями архитектуры, ее историей и различными направлениями. В ней рассказывается о многих известных архитекторах и их великих творениях. Издание снабжено словарем и предметно-именным указателем. Книга расширяет кругозор юного читателя, помогает лучше усваивать школьную программу.',
+          availability: true,
+          year: 1999,
+          pages: 464,
+          authors: ['Аркадий Клёнов'],
+          goodreads: null,
+        },
+        {
+          title: 'Астрономия',
+          image: 'Астрономия.jpg',
+          description:
+            'Очередной том популярной детской энциклопедии `Я познаю мир` посвящен астрономии. В книге рассказывается о небе и Земле, о Солнце и Луне, звездах, планетах, кометах и метеоритах, о тайнах и загадках Вселенной, о великих звездочетах древности и Средневековья, об увлекательной работе современных астрономов.',
+          availability: false,
+          year: 2003,
+          pages: 416,
+          authors: ['Н. Я. Дорожкин'],
+          goodreads: null,
+        },
+        {
+          title: 'Биология',
+          image: 'Биология.jpg',
+          description:
+            'Очередной том популярной энциклопедии «Я познаю мир» поможет читателям разобраться в самом сложном явлении Вселенной — биологической жизни. Подробно рассматриваются основные положения современной биологии: строение клетки, хромосом, процесс фотосинтеза, различные способы размножения.',
+          availability: true,
+          year: 2004,
+          pages: 398,
+          authors: ['Борис Федорович Сергеев'],
+          goodreads: null,
+        },
+        {
+          title: 'Ботаника',
+          image: 'Ботаника.jpg',
+          description:
+            'Если вы считаете, что ботаника – это скучно, возможно, вы просто не читали новый том универсальной энциклопедии «Я познаю мир». На страницах этой книги вы познакомитесь с основными группами не только растений, но и бактерий, вирусов, грибов и простейших» причем прочитаете не только о строении и размножении, но и о необыкновенных приспособлениях растений, их эволюции, о дружбе и вражде в растительном мире. Энциклопедия также послужит прекрасным дополнением к учебнику, поможет школьникам при подготовке к экзаменам, написании рефератов и докладов.',
+          availability: false,
+          year: 2003,
+          pages: null,
+          authors: ['Юлия Николаевна Касаткина'],
+          goodreads: null,
+        },
+        {
+          title: 'В мире науки',
+          image: 'В мире науки.jpg',
+          description:
+            'Новая книга серии "Я познаю мир: Для умных, но ленивых" позволит самым ленивым двоечникам сделаться умными отличниками. На веселых уроках вы проникните в самые жуткие тайны естествознания: от уравнений пятой степени и волшебных математических квадратов до хищных растений и головного мозга человека.',
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'В мире прекрасного',
+          image: 'В мире прекрасного.jpg',
+          description:
+            '"В мире прекрасного" - веселая книга об искусстве, моде и музыке. Вы узнаете, как сосиска подвела всемирно известного художника Пикассо, какая шляпа вызвала бунт и можно ли слушать музыку зубами. А также научитесь делать таинственный гипертуф, шить кринолины в играть парадиддл!',
+          availability: false,
+          year: 2004,
+          pages: null,
+          authors: ['Майкл Кокс'],
+          goodreads: null,
+        },
+        {
+          title: 'Великие композиторы',
+          image: 'Великие композиторы.jpg',
+          description:
+            'В очередном томе популярной детской энциклопедии "Я познаю мир" рассказывается о жизни и творчестве великих композиторов. Обширный фактический материал, увлекательное повествование, безусловно, заинтересуют юных читателей. Книга снабжена предметно-именным указателем. С 2004 года книга «Я познаю мир. Великие композиторы» переиздавалась 4 раза. Дата первого издания «Я познаю мир. Великие композиторы»: декабря 2004 года, последнее, 4-е издание вышло в декабряе 2004 года.',
+          availability: false,
+          year: 2004,
+          pages: 400,
+          authors: ['Татьяна Алексеевна Кравченко'],
+          goodreads: null,
+        },
+        {
+          title: 'Великие люди мира',
+          image: 'Великие люди мира.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Великие люди России',
+          image: 'Великие люди России.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Великие писатели',
+          image: 'Великие писатели.jpg',
+          description:
+            'Очередной том энциклопедии серии "Я познаю мир" рассказывает о жизни и творчестве знаменитых писателей. Издание хорошо иллюстрировано и снабжено предметно-именным указателем.',
+          availability: false,
+          year: 2008,
+          pages: 400,
+          authors: ['Афанасьев Александр Юрьевич'],
+          goodreads: null,
+        },
+        {
+          title: 'Великие путешествия',
+          image: 'Великие путешествия.jpg',
+          description:
+            'Великие путешествия — очередная книга многотомной популярной энциклопедии Я познаю мир. Это увлекательный рассказ о том, как люди исследовали нашу планету. Прочитав книгу, вы узнаете как постепенно, шаг за шагом, открывались и наносились на карту новые континенты, острова, горы, реки, моря... Книга расширяет кругозор юного читателя, помогает лучше усваивать школьную программу.',
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Великие учёные',
+          image: 'Великие учёные.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Великие художники',
+          image: 'Великие художники.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Вирусы и болезни',
+          image: 'Вирусы и болезни.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Военная техника',
+          image: 'Военная техника.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Восточные единоборства',
+          image: 'Восточные единоборства.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Гадания',
+          image: 'Гадания.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Генетика',
+          image: 'Генетика.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'География',
+          image: 'География.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'География России',
+          image: 'География России.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Города мира',
+          image: 'Города мира.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Горы',
+          image: 'Горы.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Государство',
+          image: 'Государство.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Динозавры',
+          image: 'Динозавры.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Драгоценные камни и менералы',
+          image: 'Драгоценные камни и менералы.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Естествознание',
+          image: 'Естествознание.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Живая природа от А до Я',
+          image: 'Живая природа от А до Я.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Живой мир',
+          image: 'Живой мир.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Животные',
+          image: 'Животные.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Животные в доме',
+          image: 'Животные в доме.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Загадки истории',
+          image: 'Загадки истории.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Загадки русской истории',
+          image: 'Загадки русской истории.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Загадочные джунгли',
+          image: 'Загадочные джунгли.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Загадочные животные',
+          image: 'Загадочные животные.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Загадочные растения',
+          image: 'Загадочные растения.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Звери',
+          image: 'Звери.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Змеи, крокодилы, черепахи',
+          image: 'Змеи, крокодилы, черепахи.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Знаки и символы',
+          image: 'Знаки и символы.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Зоология',
+          image: 'Зоология.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Игрушки',
+          image: 'Игрушки.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Изобретения',
+          image: 'Изобретения.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Искусство',
+          image: 'Искусство.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История',
+          image: 'История.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История вещей',
+          image: 'История вещей.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История древнего мира',
+          image: 'История древнего мира.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История моды',
+          image: 'История моды.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История ремесел',
+          image: 'История ремесел.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История России',
+          image: 'История России.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История русских царей',
+          image: 'История русских царей.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'История Средних Веков',
+          image: 'История Средних Веков.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто в истории России',
+          image: 'Кто есть кто в истории России.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто в мире животных',
+          image: 'Кто есть кто в мире животных.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто в мире звёзд и планет',
+          image: 'Кто есть кто в мире звёзд и планет.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто в мире искусства',
+          image: 'Кто есть кто в мире искусства.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто в мире мифологии и религии',
+          image: 'Кто есть кто в мире мифологии и религии.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто в мире открытий и изобретений',
+          image: 'Кто есть кто в мире открытий и изобретений.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто в мире природы',
+          image: 'Кто есть кто в мире природы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кто есть кто во всемирной истории',
+          image: 'Кто есть кто во всемирной истории.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кино',
+          image: 'Кино.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Клады и сокровища',
+          image: 'Клады и сокровища.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Книга знаний',
+          image: 'Книга знаний.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Коварные животные',
+          image: 'Коварные животные.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Коллекции и коллекционеры',
+          image: 'Коллекции и коллекционеры.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Компьютеры и интернет',
+          image: 'Компьютеры и интернет.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Корабли',
+          image: 'Корабли.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Космос',
+          image: 'Космос.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кошки',
+          image: 'Кошки.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Криминалистика',
+          image: 'Криминалистика.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Культура',
+          image: 'Культура.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Кухни народов мира',
+          image: 'Кухни народов мира.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Литература',
+          image: 'Литература.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Лошади',
+          image: 'Лошади.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Любовь у животных',
+          image: 'Любовь у животных.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Люди и животные',
+          image: 'Люди и животные.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Математика',
+          image: 'Математика.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Медицина',
+          image: 'Медицина.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Миграции животных',
+          image: 'Миграции животных.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Мир загадочного',
+          image: 'Мир загадочного.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Мировая художественная культура',
+          image: 'Мировая художественная культура.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Мифология (Европа, Азия)',
+          image: 'Мифология (Европа, Азия).jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Мифология (Двуречье, Египет, Греция, Рим)',
+          image: 'Мифология (Двуречье, Египет, Греция, Рим).jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Монархи',
+          image: 'Монархи.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Москва в вопросах и ответах',
+          image: 'Москва в вопросах и ответах.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Московские монастыри и храмы',
+          image: 'Московские монастыри и храмы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Музеи и усадьбы Москвы',
+          image: 'Музеи и усадьбы Москвы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Музыка',
+          image: 'Музыка.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Награды',
+          image: 'Награды.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Насекомые',
+          image: 'Насекомые.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Наука в загадках и отгадках',
+          image: 'Наука в загадках и отгадках.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Неожиданные предсказания',
+          image: 'Неожиданные предсказания.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Нечистая сила',
+          image: 'Нечистая сила.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'НЛО',
+          image: 'НЛО.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Океан',
+          image: 'Океан.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Опасные животные',
+          image: 'Опасные животные.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Оружие',
+          image: 'Оружие.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Основы безопасности жизнедеятельности',
+          image: 'Основы безопасности жизнедеятельности.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'От амёбы до кальмара',
+          image: 'От амёбы до кальмара.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Палеонтология',
+          image: 'Палеонтология.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Планета Земля в вопросах и ответах',
+          image: 'Планета Земля в вопросах и ответах.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Поведение животных',
+          image: 'Поведение животных.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Подводный флот',
+          image: 'Подводный флот.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Правители и войны',
+          image: 'Правители и войны.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Праздники народов мира',
+          image: 'Праздники народов мира.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Приметы и суеверия',
+          image: 'Приметы и суеверия.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Природные катастрофы',
+          image: 'Природные катастрофы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Прогнозы и пророчества',
+          image: 'Прогнозы и пророчества.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Психология',
+          image: 'Психология.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Птицы',
+          image: 'Птицы.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Разведка и шпионаж',
+          image: 'Разведка и шпионаж.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Развитие жизни на Земле',
+          image: 'Развитие жизни на Земле.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Рассказы о животных',
+          image: 'Рассказы о животных.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Растения',
+          image: 'Растения.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Рекорды животных',
+          image: 'Рекорды животных.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Религия',
+          image: 'Религия.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Русская литература',
+          image: 'Русская литература.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Русский народ: традиции и обычаи',
+          image: 'Русский народ традиции и обычаи.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Русский язык',
+          image: 'Русский язык.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Рыбы',
+          image: 'Рыбы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Рыцари',
+          image: 'Рыцари.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Самые-самые...',
+          image: 'Самые-самые....jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Санкт-Петербург в вопросах и ответах',
+          image: 'Санкт-Петербург в вопросах и ответах.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Словарь крылатых имён',
+          image: 'Словарь крылатых имён.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Собаки',
+          image: 'Собаки.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Сокровища земли',
+          image: 'Сокровища земли.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Спорт',
+          image: 'Спорт.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Страны и народы (Азия, Америка, Австралия Африка)',
+          image: 'Страны и народы (Азия, Америка, Австралия Африка).jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Страны и народы (Европа)',
+          image: 'Страны и народы (Европа).jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Страшные тайны природы',
+          image: 'Страшные тайны природы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Тайны географических названий',
+          image: 'Тайны географических названий.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Тайны красоты',
+          image: 'Тайны красоты.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Тайны литературы',
+          image: 'Тайны литературы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Тайны пиратов',
+          image: 'Тайны пиратов.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Тайны природы',
+          image: 'Тайны природы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Тайны человека',
+          image: 'Тайны человека.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Театр',
+          image: 'Театр.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Техника',
+          image: 'Техника.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Транспорт',
+          image: 'Транспорт.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Українська мова',
+          image: 'Українська мова.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Українська література',
+          image: 'Українська література.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Уроки литературы',
+          image: 'Уроки литературы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Уроки общения',
+          image: 'Уроки общения.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Уроки сексологии',
+          image: 'Уроки сексологии.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Феномены мира',
+          image: 'Феномены мира.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Физика',
+          image: 'Физика.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Философия',
+          image: 'Философия.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Футбол',
+          image: 'Футбол.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Химия',
+          image: 'Химия.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Хищные животные',
+          image: 'Хищные животные.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Хоккей',
+          image: 'Хоккей.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Христианство',
+          image: 'Христианство.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Цивилизации. Тайны гибели',
+          image: 'Цивилизации. Тайны гибели.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Чудеса природы',
+          image: 'Чудеса природы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Чудеса света',
+          image: 'Чудеса света.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Чудеса техники',
+          image: 'Чудеса техники.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Шахматы',
+          image: 'Шахматы.jpg',
+          description: null,
+          availability: false,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Экология',
+          image: 'Экология.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Экономика',
+          image: 'Экономика.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+        {
+          title: 'Этикет во все времена',
+          image: 'Этикет во все времена.jpg',
+          description: null,
+          availability: true,
+          year: null,
+          pages: null,
+          authors: [],
+          goodreads: null,
+        },
+      ];
+
+      const searchInput = document.getElementById('searchInput');
+      const availabilityCheckbox = document.getElementById('availabilityCheckbox');
+      const bookList = document.getElementById('bookList');
+      const modal = document.getElementById('modal');
+      const modalContent = document.getElementById('modalContent');
+      const total = document.getElementById('total');
+
+      const notAvailableCount = booksData.filter((book) => book.availability === false).length;
+      total.textContent = `Всего книг: ${booksData.length} (из них отсутствует: ${notAvailableCount})`;
+
+      function showModal(book) {
+        modalContent.innerHTML = `
+        <img src="images/${book.image ? book.image : 'no-cover.jpg'}" alt="${
+          book.title
+        }" onerror="this.onerror=null;this.src='images/no-cover.jpg';" />
+        <h2>${book.title}</h2>
+        <p><strong>Год:</strong> ${book.year || '-'}</p>
+        <p><strong>Авторы:</strong> ${book.authors.length ? book.authors.join(', ') : '-'}</p>
+        <p><strong>Описание:</strong> ${book.description || '-'}</p>
+        <p><strong>Страниц:</strong> ${book.pages || '-'}</p>
+        ${
+          book.goodreads
+            ? `<p><a href="${book.goodreads}" target="_blank">Ссылка на Goodreads</a></p>`
+            : ''
+        }
+        <button onclick="document.getElementById('modal').style.display='none'">Закрыть</button>
+      `;
+        modal.style.display = 'flex';
+      }
+
+      function renderBooks() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const onlyNotAvailable = availabilityCheckbox.checked;
+
+        const filteredBooks = booksData
+          .filter((book) => {
+            const matchesSearch = book.title.toLowerCase().includes(searchTerm);
+            const matchesAvailability = !onlyNotAvailable || !book.availability;
+            return matchesSearch && matchesAvailability;
+          })
+          .sort((a, b) => a.title.localeCompare(b.title));
+
+        bookList.innerHTML = '';
+
+        if (filteredBooks.length === 0) {
+          bookList.innerHTML = '<p class="no-results">Ничего не найдено</p>';
+          return;
+        }
+
+        filteredBooks.forEach((book) => {
+          const card = document.createElement('div');
+          card.className = 'book-card';
+
+          card.innerHTML = `
+          <img class="book-image" src="images/${book.image ? book.image : 'no-cover.jpg'}" alt="${
+            book.title
+          }" onerror="this.onerror=null;this.src='images/no-cover.jpg';" onclick='showModal(${JSON.stringify(
+            book,
+          )})' />
+          <div class="book-info">
+            <div class="book-title">${book.title}</div>
+            <div class="book-year">Год: ${book.year || '-'}</div>
+            <div class="${book.availability ? 'available' : 'not-available'}">
+              ${book.availability ? 'В наличии' : 'Отсутствует'}
+            </div>
+          </div>
+        `;
+
+          bookList.appendChild(card);
+        });
+      }
+
+      searchInput.addEventListener('input', renderBooks);
+      availabilityCheckbox.addEventListener('change', renderBooks);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+
+      renderBooks();
+    </script>
+  </body>
+</html>
