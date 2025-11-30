@@ -2235,8 +2235,9 @@
       const modalContent = document.getElementById('modalContent');
       const total = document.getElementById('total');
 
+      const availableCount = booksData.filter((book) => book.availability === true).length;
       const notAvailableCount = booksData.filter((book) => book.availability === false).length;
-      total.textContent = `Всего книг: ${booksData.length} (из них отсутствует: ${notAvailableCount})`;
+      total.textContent = `Всего книг: ${booksData.length}. У меня в наличии: ${availableCount}.  Отсутствует: ${notAvailableCount}.`;
 
       function showModal(book) {
         document.body.classList.add('modal-open');
