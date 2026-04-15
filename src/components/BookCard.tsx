@@ -1,11 +1,18 @@
-function getBookImageSrc(imageName) {
+import type { Book } from '../types/book';
+
+interface BookCardProps {
+  book: Book;
+  onClick: () => void;
+}
+
+function getBookImageSrc(imageName: Book['image']) {
   if (!imageName) {
     return '/images/no-cover.svg';
   }
   return `/images/${imageName}`;
 }
 
-export function BookCard({ book, onClick }) {
+export function BookCard({ book, onClick }: BookCardProps) {
   return (
     <article className="book-card" onClick={onClick}>
       <img

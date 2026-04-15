@@ -1,19 +1,25 @@
 import { useEffect } from 'react';
+import type { Book } from '../types/book';
 
-function getBookImageSrc(imageName) {
+interface BookModalProps {
+  book: Book | null;
+  onClose: () => void;
+}
+
+function getBookImageSrc(imageName: Book['image']) {
   if (!imageName) {
     return '/images/no-cover.svg';
   }
   return `/images/${imageName}`;
 }
 
-export function BookModal({ book, onClose }) {
+export function BookModal({ book, onClose }: BookModalProps) {
   useEffect(() => {
     if (!book) {
       return undefined;
     }
 
-    const onKeyDown = (event) => {
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
       }

@@ -1,4 +1,6 @@
-export const booksData = [
+import type { Book } from '../types/book';
+
+export const booksData: Book[] = [
         {
           title: '100 исторических событий',
           image: '100 исторических событий.jpg',

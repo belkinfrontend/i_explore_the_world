@@ -3,11 +3,12 @@ import { booksData } from './data/booksData';
 import { Filters } from './components/Filters';
 import { BookList } from './components/BookList';
 import { BookModal } from './components/BookModal';
+import type { Book } from './types/book';
 
 function App() {
   const [search, setSearch] = useState('');
   const [onlyMissing, setOnlyMissing] = useState(false);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
   const availableCount = useMemo(
     () => booksData.filter((book) => book.availability).length,
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Серия "Я познаю мир" - React.js</h1>
+      <h1>Серия "Я познаю мир" - React.js + TypeScript</h1>
 
       <p className="total">
         Всего книг: {booksData.length}. У меня в наличии: {availableCount}. Отсутствует:{' '}

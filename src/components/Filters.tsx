@@ -1,9 +1,16 @@
+interface FiltersProps {
+  search: string;
+  onSearchChange: (value: string) => void;
+  onlyMissing: boolean;
+  onOnlyMissingChange: (value: boolean) => void;
+}
+
 export function Filters({
   search,
   onSearchChange,
   onlyMissing,
   onOnlyMissingChange,
-}) {
+}: FiltersProps) {
   return (
     <>
       <input
