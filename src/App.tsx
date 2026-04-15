@@ -1,4 +1,6 @@
 import { useMemo, useState } from 'react';
+import { TegakiRenderer } from 'tegaki';
+import caveat from 'tegaki/fonts/caveat';
 import { booksData } from './data/booksData';
 import { Filters } from './components/Filters';
 import { BookList } from './components/BookList';
@@ -10,10 +12,7 @@ function App() {
   const [onlyMissing, setOnlyMissing] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 
-  const availableCount = useMemo(
-    () => booksData.filter((book) => book.availability).length,
-    [],
-  );
+  const availableCount = useMemo(() => booksData.filter((book) => book.availability).length, []);
   const missingCount = booksData.length - availableCount;
 
   const filteredBooks = useMemo(() => {
@@ -30,7 +29,11 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Серия "Я познаю мир" - React.js + TypeScript</h1>
+      <h1>
+        <TegakiRenderer font={caveat} style={{ fontSize: '52px' }}>
+          Серия "Я познаю мир"
+        </TegakiRenderer>
+      </h1>
 
       <p className="total">
         Всего книг: {booksData.length}. У меня в наличии: {availableCount}. Отсутствует:{' '}

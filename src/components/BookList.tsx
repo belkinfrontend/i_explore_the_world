@@ -14,7 +14,11 @@ export function BookList({ books, onBookClick }: BookListProps) {
   return (
     <div className="book-list">
       {books.map((book) => (
-        <BookCard key={`${book.title}-${book.image ?? 'no-image'}`} book={book} onClick={() => onBookClick(book)} />
+        <BookCard
+          key={`${book.title}-${book.image ?? 'no-image'}`}
+          book={book}
+          onClick={() => onBookClick(book)}
+        />
       ))}
     </div>
   );
