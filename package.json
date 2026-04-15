@@ -1,0 +1,30 @@
+{
+  "name": "i_explore_the_world",
+  "version": "1.0.0",
+  "description": "React version of book catalog app",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belkinfrontend/i_explore_the_world.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/belkinfrontend/i_explore_the_world/issues"
+  },
+  "homepage": "https://github.com/belkinfrontend/i_explore_the_world#readme",
+  "dependencies": {
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.8"
+  }
+}
