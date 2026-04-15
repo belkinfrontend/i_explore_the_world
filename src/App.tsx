@@ -28,29 +28,31 @@ function App() {
   }, [search, onlyMissing]);
 
   return (
-    <div className="container">
-      <h1>
-        <TegakiRenderer font={caveat} style={{ fontSize: '52px' }}>
-          Серия "Я познаю мир"
-        </TegakiRenderer>
-      </h1>
+    <>
+      <main className="container">
+        <h1>
+          <TegakiRenderer font={caveat} style={{ fontSize: '52px' }}>
+            Серия "Я познаю мир"
+          </TegakiRenderer>
+        </h1>
 
-      <p className="total">
-        Всего книг: {booksData.length}. У меня в наличии: {availableCount}. Отсутствует:{' '}
-        {missingCount}.
-      </p>
+        <p className="total">
+          Всего книг: {booksData.length}. У меня в наличии: {availableCount}. Отсутствует:{' '}
+          {missingCount}.
+        </p>
 
-      <Filters
-        search={search}
-        onSearchChange={setSearch}
-        onlyMissing={onlyMissing}
-        onOnlyMissingChange={setOnlyMissing}
-      />
+        <Filters
+          search={search}
+          onSearchChange={setSearch}
+          onlyMissing={onlyMissing}
+          onOnlyMissingChange={setOnlyMissing}
+        />
 
-      <BookList books={filteredBooks} onBookClick={setSelectedBook} />
+        <BookList books={filteredBooks} onBookClick={setSelectedBook} />
+      </main>
 
       <BookModal book={selectedBook} onClose={() => setSelectedBook(null)} />
-    </div>
+    </>
   );
 }
 
