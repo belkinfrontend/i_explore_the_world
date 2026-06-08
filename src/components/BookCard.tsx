@@ -28,6 +28,7 @@ export function BookCard({ book, onClick }: BookCardProps) {
         <div className="book-title">{book.title}</div>
         <div className="book-year">Год: {book.year || '-'}</div>
         <div>Данные: {book.verified_data ? 'актуализированы' : 'Не актуализированы'}</div>
+        <div>Прочитано: {book.read ? 'Да' : 'Нет'}</div>
         <br />
         <div className={book.availability ? 'available' : 'not-available'}>
           {book.availability ? 'В наличии ✅' : 'Отсутствует ❌'}

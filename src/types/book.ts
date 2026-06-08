@@ -9,4 +9,5 @@ export interface Book {
   goodreads?: string | null;
   verified_data?: boolean;
   language?: string | null;
+  read: boolean;
 }

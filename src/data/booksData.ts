@@ -13,6 +13,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: '100 мировых шедевров',
@@ -26,6 +27,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: '30 загадок нашего мира',
@@ -38,6 +40,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Авиация и воздухоплавание',
@@ -51,6 +54,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Автомобили (Автомобілі)',
@@ -64,6 +68,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'українська',
+    read: false,
   },
   {
     title: 'Амфибии',
@@ -77,6 +82,7 @@ export const booksData: Book[] = [
     goodreads: 'https://www.goodreads.com/book/show/24947224',
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Анатомия',
@@ -90,6 +96,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Английский язык',
@@ -101,6 +108,7 @@ export const booksData: Book[] = [
     pages: 398,
     authors: ['Ольга Юрьевна Маркова'],
     goodreads: 'https://www.goodreads.com/book/show/58897655',
+    read: false,
   },
   {
     title: 'Арктика и Антарктика',
@@ -114,6 +122,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Археология',
@@ -127,6 +136,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Архитектура',
@@ -140,6 +150,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Астрономия',
@@ -153,6 +164,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Биология',
@@ -166,6 +178,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Ботаника',
@@ -179,6 +192,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'В мире науки',
@@ -192,6 +206,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'В мире прекрасного',
@@ -205,6 +220,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Великие композиторы',
@@ -218,6 +234,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Великие люди мира',
@@ -230,6 +247,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Великие люди России',
@@ -242,6 +260,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Великие писатели',
@@ -255,6 +274,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Великие путешествия',
@@ -268,6 +288,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Великие учёные',
@@ -280,6 +301,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Великие художники',
@@ -293,6 +315,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Вирусы и болезни',
@@ -305,6 +328,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Военная техника',
@@ -317,6 +341,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Восточные единоборства',
@@ -329,6 +354,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Гадания',
@@ -341,6 +367,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Генетика',
@@ -353,6 +380,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'География',
@@ -365,6 +393,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'География России',
@@ -377,6 +406,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Географія України',
@@ -390,6 +420,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'українська',
+    read: false,
   },
   {
     title: 'Города мира (Міста світу) (русский, українська - 2 шт.)',
@@ -403,6 +434,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский, українська',
+    read: false,
   },
   {
     title: 'Горы',
@@ -415,6 +447,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Государство',
@@ -427,6 +460,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Динозавры',
@@ -440,6 +474,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Драгоценные камни и менералы',
@@ -452,6 +487,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Естествознание',
@@ -464,6 +500,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Живая природа от А до Я',
@@ -476,6 +513,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Живой мир',
@@ -488,6 +526,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Животные',
@@ -500,6 +539,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Животные в доме',
@@ -512,6 +552,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Загадки истории',
@@ -525,6 +566,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Загадки русской истории',
@@ -537,6 +579,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Загадочные джунгли',
@@ -549,6 +592,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Загадочные животные',
@@ -561,6 +605,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Загадочные растения',
@@ -574,6 +619,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Звери',
@@ -586,6 +632,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Змеи, крокодилы, черепахи',
@@ -599,6 +646,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Знаки и символы',
@@ -611,6 +659,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Зоология',
@@ -623,6 +672,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Игрушки',
@@ -635,6 +685,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Изобретения',
@@ -647,6 +698,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Искусство',
@@ -659,6 +711,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История',
@@ -671,6 +724,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История вещей',
@@ -684,6 +738,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История древнего мира',
@@ -696,6 +751,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История моды',
@@ -708,6 +764,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История ремесел',
@@ -720,6 +777,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История России',
@@ -732,6 +790,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История русских царей',
@@ -744,6 +803,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'История Средних Веков',
@@ -756,6 +816,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто в истории России',
@@ -768,6 +829,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто в мире животных',
@@ -780,6 +842,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто в мире звёзд и планет',
@@ -792,6 +855,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто в мире искусства',
@@ -804,6 +868,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто в мире мифологии и религии',
@@ -816,6 +881,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто в мире открытий и изобретений',
@@ -828,6 +894,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто в мире природы',
@@ -840,6 +907,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кто есть кто во всемирной истории',
@@ -852,6 +920,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кино',
@@ -864,6 +933,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Клады и сокровища',
@@ -876,6 +946,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Книга знаний',
@@ -888,6 +959,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Коварные животные',
@@ -900,6 +972,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Коллекции и коллекционеры',
@@ -912,6 +985,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Компьютеры и интернет',
@@ -925,6 +999,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Корабли (Кораблі)',
@@ -938,6 +1013,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'українська',
+    read: false,
   },
   {
     title: 'Космос',
@@ -950,6 +1026,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кошки',
@@ -962,6 +1039,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Криминалистика',
@@ -974,6 +1052,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Культура',
@@ -986,6 +1065,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Кухни народов мира',
@@ -999,6 +1079,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Литература',
@@ -1011,6 +1092,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Лошади',
@@ -1024,6 +1106,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Любовь у животных',
@@ -1036,6 +1119,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Люди и животные',
@@ -1048,6 +1132,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Математика',
@@ -1060,6 +1145,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Медицина',
@@ -1072,6 +1158,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Миграции животных',
@@ -1085,6 +1172,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Мир загадочного',
@@ -1097,6 +1185,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Мировая художественная культура',
@@ -1109,6 +1198,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Мифология (Европа, Азия)',
@@ -1121,6 +1211,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Мифология (Двуречье, Египет, Греция, Рим)',
@@ -1133,6 +1224,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Монархи',
@@ -1146,6 +1238,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Москва в вопросах и ответах',
@@ -1158,6 +1251,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Московские монастыри и храмы',
@@ -1170,6 +1264,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Музеи и усадьбы Москвы',
@@ -1182,6 +1277,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Музыка',
@@ -1194,6 +1290,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Награды',
@@ -1206,6 +1303,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Насекомые',
@@ -1218,6 +1316,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Наука в загадках и отгадках',
@@ -1230,6 +1329,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Неожиданные предсказания',
@@ -1242,6 +1342,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Нечистая сила',
@@ -1255,6 +1356,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'НЛО',
@@ -1267,6 +1369,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Океан',
@@ -1279,6 +1382,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Опасные животные',
@@ -1291,6 +1395,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Оружие',
@@ -1303,6 +1408,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Основы безопасности жизнедеятельности',
@@ -1315,6 +1421,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'От амёбы до кальмара',
@@ -1327,6 +1434,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Палеонтология',
@@ -1339,6 +1447,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Планета Земля в вопросах и ответах',
@@ -1351,6 +1460,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Поведение животных',
@@ -1363,6 +1473,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Подводный флот',
@@ -1375,6 +1486,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Правители и войны',
@@ -1387,6 +1499,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Праздники народов мира',
@@ -1399,6 +1512,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Приметы и суеверия',
@@ -1411,6 +1525,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Природные катастрофы',
@@ -1424,6 +1539,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Прогнозы и пророчества',
@@ -1436,6 +1552,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Психология',
@@ -1448,6 +1565,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Птицы',
@@ -1460,6 +1578,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Разведка и шпионаж (Розвідка та шпигунство)',
@@ -1473,6 +1592,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'українська',
+    read: false,
   },
   {
     title: 'Развитие жизни на Земле',
@@ -1485,6 +1605,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Рассказы о животных',
@@ -1497,6 +1618,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Растения',
@@ -1509,6 +1631,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Рекорды животных',
@@ -1521,6 +1644,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Религия',
@@ -1533,6 +1657,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Русская литература',
@@ -1545,6 +1670,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Русский народ: традиции и обычаи',
@@ -1557,6 +1683,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Русский язык',
@@ -1569,6 +1696,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Рыбы',
@@ -1582,6 +1710,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Рыцари',
@@ -1594,6 +1723,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Самые-самые...',
@@ -1606,6 +1736,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Санкт-Петербург в вопросах и ответах',
@@ -1618,6 +1749,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Словарь крылатых имён',
@@ -1630,6 +1762,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Собаки',
@@ -1642,6 +1775,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Сокровища земли',
@@ -1654,6 +1788,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Спорт',
@@ -1666,6 +1801,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Страны и народы (Азия, Америка, Австралия Африка)',
@@ -1678,6 +1814,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Страны и народы (Европа)',
@@ -1690,6 +1827,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Страшные тайны природы',
@@ -1703,6 +1841,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Тайны географических названий',
@@ -1715,6 +1854,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Тайны красоты',
@@ -1727,6 +1867,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Тайны литературы',
@@ -1739,6 +1880,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Тайны пиратов',
@@ -1751,6 +1893,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Тайны природы (Тайни природи) (2 книги - рус. и укр.)',
@@ -1764,6 +1907,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'українська, русский',
+    read: false,
   },
   {
     title: 'Тайны человека',
@@ -1777,6 +1921,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Театр',
@@ -1789,6 +1934,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Техника',
@@ -1801,6 +1947,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Транспорт',
@@ -1813,6 +1960,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Українська мова',
@@ -1825,6 +1973,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'українська',
+    read: false,
   },
   {
     title: 'Українська література',
@@ -1837,6 +1986,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'українська',
+    read: false,
   },
   {
     title: 'Уроки литературы',
@@ -1849,6 +1999,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Уроки общения',
@@ -1861,6 +2012,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Уроки сексологии',
@@ -1873,6 +2025,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Феномены мира',
@@ -1885,6 +2038,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Физика',
@@ -1897,6 +2051,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Философия',
@@ -1909,6 +2064,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Футбол',
@@ -1921,6 +2077,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Химия',
@@ -1933,6 +2090,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Хищные животные',
@@ -1945,6 +2103,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Хоккей',
@@ -1957,6 +2116,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Христианство',
@@ -1969,6 +2129,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Цивилизации. Тайны гибели',
@@ -1981,22 +2142,10 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
-    title: 'Чудеса природы (Чудеса природи) - укр.',
-    image: 'Чудеса природи.jpg',
-    description:
-      'У черговій книжці популярних дитячих енциклопедій "Я пізнаю світ" розповідається про дивовижні творіння природи: каньйони і печери, водоспади й гейзери, айсберги і вулкани. Прочитавши книжку, ви дізнаєтесь про лікувальні властивасті печер і "кам’яного масла", про таємничі звуки та видіння й багато чого іншого. Книжка має предметно-іменний покажчик.',
-    availability: true,
-    year: 2002,
-    pages: 400,
-    authors: ['Черниш І.В.'],
-    goodreads: null,
-    verified_data: true,
-    language: 'українська',
-  },
-  {
-    title: 'Чудеса природы (Чудеса природи) - рус.',
+    title: 'Чудеса природы (Чудеса природи) - рус. + укр. (2 книги)',
     image: 'Чудеса природы.jpg',
     description:
       'В очередной книге популярных детских энциклопедий `Я познаю мир` рассказывается об удивительных творениях, созданных природой: каньонах и пещерах, водопадах и гейзерах, льдах и горах. Прочитав книгу, вы узнаете о лечебных свойствах пещер и "каменного масла", о таинственных звуках и видениях и многом другом. Книга снабжена предметно-именным указателем.',
@@ -2007,6 +2156,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: true,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Чудеса света',
@@ -2019,6 +2169,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Чудеса техники',
@@ -2031,6 +2182,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Шахматы',
@@ -2043,6 +2195,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Экология',
@@ -2055,6 +2208,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Экономика',
@@ -2067,6 +2221,7 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
   {
     title: 'Этикет во все времена',
@@ -2079,5 +2234,6 @@ export const booksData: Book[] = [
     goodreads: null,
     verified_data: false,
     language: 'русский',
+    read: false,
   },
 ];

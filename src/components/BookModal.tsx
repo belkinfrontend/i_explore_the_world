@@ -69,6 +69,9 @@ export function BookModal({ book, onClose }: BookModalProps) {
         <p>
           <strong>Страниц:</strong> {book.pages || '-'}
         </p>
+        <p>
+          <strong>Прочитано:</strong> {book.read ? 'Да' : 'Нет'}
+        </p>
         {book.goodreads ? (
           <p>
             <a href={book.goodreads} target="_blank" rel="noreferrer">

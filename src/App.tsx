@@ -1,6 +1,4 @@
 import { useMemo, useState } from 'react';
-import { TegakiRenderer } from 'tegaki';
-import caveat from 'tegaki/fonts/caveat';
 import { booksData } from './data/booksData';
 import { Filters } from './components/Filters';
 import { BookList } from './components/BookList';
@@ -30,11 +28,7 @@ function App() {
   return (
     <>
       <main className="container">
-        <h1>
-          <TegakiRenderer font={caveat} style={{ fontSize: '52px' }}>
-            Серия "Я познаю мир"
-          </TegakiRenderer>
-        </h1>
+        <h1>Серия "Я познаю мир"</h1>
 
         <p className="total">
           Всего книг: {booksData.length}. У меня в наличии: {availableCount}. Отсутствует:{' '}
