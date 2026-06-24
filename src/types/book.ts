@@ -1,4 +1,4 @@
-export interface Book {
+export interface BookEdition {
   title: string;
   image?: string | null;
   description?: string | null;
@@ -10,4 +10,8 @@ export interface Book {
   verified_data?: boolean;
   language?: string | null;
   read: boolean;
+}
+
+export interface Book extends BookEdition {
+  other_editions?: BookEdition[];
 }
